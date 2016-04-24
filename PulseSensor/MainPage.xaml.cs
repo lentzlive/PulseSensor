@@ -81,9 +81,15 @@ namespace PulseSensor
         }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = null;
-            timer.Stop();
+        {            
+            try
+            {
+                DataContext = null;
+                this.timer.Stop();
+            }
+            catch (Exception ex)
+            { this.StatusText.Text = ex.Message; }
+
         }
 
 
@@ -121,62 +127,17 @@ namespace PulseSensor
                     rangeY.StartValue = Convert.ToDouble(_pulse) - 1;
                 }
 
-                // chart.ActualAxisX.VisualRange = new VisualAxisRange() { StartValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.StartValue) + Convert.ToDouble(slider.Value), EndValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.EndValue) };
-                chart.ActualAxisX.VisualRange = new VisualAxisRange() { StartValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.EndValue) - Convert.ToDouble(slider.Value), EndValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.EndValue) };
+               chart.ActualAxisX.VisualRange = new VisualAxisRange() { StartValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.EndValue) - Convert.ToDouble(slider.Value), EndValueInternal = Convert.ToDouble(chart.AxisX.WholeRange.EndValue) };
 
 
-                //
 
             }
             catch (Exception ex)
             { this.StatusText.Text = ex.Message; }
         }
 
-        private void btnUpdatetiming_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                double timingInterval = double.Parse(cmbTiming.SelectionBoxItem.ToString(), CultureInfo.InvariantCulture);
-                timer.Interval = TimeSpan.FromMilliseconds(timingInterval);
+   
 
-
-                int val = int.Parse(cmbChannel.SelectionBoxItem.ToString(), CultureInfo.InvariantCulture);
-                Data.SetPointCount(val);
-
-                double _tb = double.Parse(cmbTimeBase.SelectionBoxItem.ToString(), CultureInfo.InvariantCulture);
-                Data.SetTimeBaseSelectior(double.Parse(cmbTimeBase.SelectionBoxItem.ToString(), CultureInfo.InvariantCulture));
-
-
-                slider.Maximum = _tb;
-
-                // Da testare
-                //if (_tb == 1000)
-                //    chart.AxisX.DateTimeMeasureUnit = DateTimeMeasureUnit.Millisecond;
-                //else if(_tb == 1000000)
-                //    chart.AxisX.DateTimeMeasureUnit = DateTimeMeasureUnit.Second;
-                //Data.ResetPar();
-
-                i = 0;
-                sumTime = 0;
-            }
-            catch (Exception ex)
-            { this.StatusText.Text = ex.Message; }
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdStopSpi_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.timer.Stop();
-            }
-            catch (Exception ex)
-            { this.StatusText.Text = ex.Message; }
-        }
 
     }
 
@@ -186,7 +147,7 @@ namespace PulseSensor
 
         const int PointsCount = 1000;
         const double Divider = 500;
-        public int NewPointsCount = 100;
+        public int NewPointsCount = 5;
 
         double count = 0;
         double baseTime = 0;
@@ -203,7 +164,7 @@ namespace PulseSensor
         {
             for (int i = 0; i < PointsCount; i++)
             {
-                // points.Add(new Point(i, GetValue(count)));
+        
                 points.Add(new Point(i, 0));
                 IncreaseCount();
             }
@@ -258,7 +219,7 @@ namespace PulseSensor
         SensorValues GetSensorvalues()
         {
             Sensor s = new Sensor();
-            SensorValues sValues = s.GetSensorValue("myFirstDevice");
+            SensorValues sValues = s.GetSensorValue("myPulseDevice");
             pValue = Convert.ToDouble(sValues.Pulse);
             this.timewatch = sValues.Timewatch;
             return sValues;
@@ -267,7 +228,7 @@ namespace PulseSensor
         double GetValue(double count)
         {
             Sensor s = new Sensor();
-            SensorValues sValues = s.GetSensorValue("myFirstDevice");
+            SensorValues sValues = s.GetSensorValue("myPulseDevice");
             this.timewatch = sValues.Timewatch;
             pValue = Convert.ToDouble(sValues.Pulse);
             return pValue;
