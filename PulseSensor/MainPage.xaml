@@ -53,23 +53,18 @@
                     </Charts:Series>
                 </Charts:CartesianChart.Series>
             </Charts:CartesianChart>
-            <TextBlock x:Name="txtCount" Height="50" Width="180" Canvas.Left="1326" Canvas.Top="35" />
-
-            <TextBlock x:Name="txtTimeWatch" Height="50"   Width="180" Canvas.Left="1326" Canvas.Top="90"  />
-            <TextBlock x:Name="txtTimeWatchMedio" Height="50"  Width="180" Canvas.Left="1326" Canvas.Top="145"   />
-            <ComboBox AllowDrop="True" x:Name="cmbTimeBase" Canvas.Left="10" Canvas.Top="463" Width="180">
-                <ComboBoxItem x:Name="us" >1</ComboBoxItem>
-                <ComboBoxItem x:Name="ms"  IsSelected="True">1000</ComboBoxItem>
-                <ComboBoxItem x:Name="s">1000000</ComboBoxItem>
 
 
-            </ComboBox>
-            <TextBox x:Name="txtstart" Canvas.Left="224" TextWrapping="Wrap" Text="1000" Canvas.Top="463" Width="87"/>
-            <Slider x:Name="slider" Minimum="1" Value="1000" Maximum="100000"  Height="41" Canvas.Left="349" Canvas.Top="456" Width="396"/>
+            <Slider x:Name="slider" Minimum="1" Value="100" Maximum="250"  Height="41" Canvas.Left="349" Canvas.Top="456" Width="396"/>
         </Canvas>
         <Canvas Grid.Row="1" Grid.Column="1" Margin="0,0,20,20">
 
             <TextBox x:Name="StatusText" Height="70" Canvas.Left="10" Width="574" Canvas.Top="10" RenderTransformOrigin="-0.242,0.781"/>
+
+            <TextBlock x:Name="txtCount" Height="50" Width="180" Canvas.Left="609" Canvas.Top="30" />
+
+            <TextBlock x:Name="txtTimeWatch" Height="50"   Width="180" Canvas.Left="832" Canvas.Top="30"  />
+            <TextBlock x:Name="txtTimeWatchMedio" Height="50"  Width="180" Canvas.Left="1077" Canvas.Top="30"   />
         </Canvas>
 
 
