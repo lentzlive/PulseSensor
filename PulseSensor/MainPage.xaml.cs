@@ -108,9 +108,9 @@ namespace PulseSensor
                 double _time = Data.GetTimeWatch();
                 sumTime += _time;
                 _timeMedio = sumTime / i;
-                txtCount.Text = Convert.ToString(i) + " - " + Data.GetIterazioni().ToString();
-                txtTimeWatch.Text = _time.ToString("F") + " us";// strTime;
-                txtTimeWatchMedio.Text = _timeMedio.ToString("F");
+               // txtCount.Text = Convert.ToString(i) + " - " + Data.GetIterazioni().ToString();
+               // txtTimeWatch.Text = _time.ToString("F") + " ms";// strTime;
+                txtTimeWatchMedio.Text = _timeMedio.ToString("F") + " ms";
                 i++;
 
 
@@ -145,9 +145,9 @@ namespace PulseSensor
     public class SensorDataGenerator : ChartDataAdapter
     {
 
-        const int PointsCount = 1000;
+        const int PointsCount = 500;
         const double Divider = 500;
-        public int NewPointsCount = 5;
+        public int NewPointsCount = 6;
 
         double count = 0;
         double baseTime = 0;

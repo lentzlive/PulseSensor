@@ -31,7 +31,7 @@
                 <Charts:CartesianChart.AxisX>
                     <Charts:AxisX  x:Name="rangeX"  ShowMajorGridlines="True" ShowMinorGridlines="True" ShowLabels="True">
                         <Charts:AxisX.Title>
-                            <Charts:AxisTitle Content="TimeBase [us]"></Charts:AxisTitle>
+                            <Charts:AxisTitle Content="TimeBase [ms]"></Charts:AxisTitle>
                         </Charts:AxisX.Title>
                         <Charts:AxisX.WholeRange>
                             <Charts:WholeAxisRange SideMargins="0" />
